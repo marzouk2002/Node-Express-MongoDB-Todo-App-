@@ -37,7 +37,6 @@ class item {
 
 	async edit(input) {
 		const newInput = prompt('Enter new msg:', input)
-		input.value = newInput
 		await fetch('/api/modify', {
 			method: 'POST',
 			body: JSON.stringify({ old: input.value, new: newInput }),
@@ -45,12 +44,13 @@ class item {
 				'Content-Type': 'application/json'
 			}
 		})
+
 	}
 
 	async remove(item, value) {
 		container.removeChild(item)
 		await fetch('/api/delete', {
-			method: 'POST',
+			method: 'DELETE',
 			body: JSON.stringify({ record: value }),
 			headers: {
 				'Content-Type': 'application/json'
